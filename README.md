@@ -14,10 +14,11 @@ En esta clase se logro conocer la estructura del preOrder, posOrder, e inOrder, 
 
 ## Evidencias
 ### Captura 1
-captura de la ejecución.
+captura de la ejecución del codigo.
 - Archivo: `/assets/captura-1.png`
 
 ### Captura 2 
 Captura codig Size complegidad o(1).
 - Archivo: `assets/captura-2.png`
+
 
