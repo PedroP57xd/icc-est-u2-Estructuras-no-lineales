@@ -1,5 +1,7 @@
 package models;
 
+import java.util.Objects;
+
 public class Person implements Comparable<Person> {
     private String nombre;
     private int edad;
@@ -26,6 +28,19 @@ public class Person implements Comparable<Person> {
 
     public void setEdad(int edad) {
         this.edad = edad;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Person person = (Person) obj;
+        return edad == person.edad && Objects.equals(nombre, person.nombre);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nombre, edad);
     }
 
     @Override

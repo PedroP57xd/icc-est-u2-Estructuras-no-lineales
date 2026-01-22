@@ -1,4 +1,7 @@
 import Structures.graphs.Graph;
+import Structures.graphs.PathFinder;
+import Structures.graphs.PathResult;
+import Structures.graphs.implementar.BFSPathFinder;
 import Structures.nodes.Node;
 import Structures.trees.IntTree;
 import Structures.trees.Tree;
@@ -6,10 +9,44 @@ import models.Person;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        System.out.println("Arboles");
+        System.out.println("GRAPHS");
         // runIntTree();
         // runTree();
-        runGraph();
+        // runGraph();
+        runGraphRecorridos();
+    }
+
+    private static void runGraphRecorridos() {
+        Graph<Person> graph = new Graph<>();
+
+        Person pC23 = new Person("Carlos", 23);
+        Person pL18 = new Person("Luis", 18);
+        Person pA23 = new Person("Andres", 23);
+        Person pA30 = new Person("Ana", 30);
+        Person pJ25 = new Person("Juan", 25);
+        Person pAn20 = new Person("Ana", 20);
+        Person pM10 = new Person("Mateo", 10);
+        Person pJ10 = new Person("Julio", 10);
+
+        graph.addEdge(new Node<>(pC23), new Node<>(pA30));
+        graph.addConocido(pC23, pL18);
+        graph.addConocido(pC23, pA23);
+        graph.addConocido(pL18, pJ25);
+        graph.addEdge(new Node<>(pL18), new Node<>(pA23));
+        graph.addConocido(pAn20, pA30);
+        graph.addEdge(new Node<>(pA30), new Node<>(pM10));
+        graph.addEdge(new Node<>(pM10), new Node<>(pJ10));
+        graph.bfs(new Node<Person>(pC23));
+        System.out.println();
+        graph.dfs(new Node<Person>(pC23));
+
+        PathFinder<Person> finder = new BFSPathFinder<>();
+        PathResult<Person> resultado=finder.find(graph, new Node(pC23), new Node(pJ10));
+        System.out.println("Orden BFS");
+        resultado.getVisitados().forEach(node->System.err.println(node.getValue()+""));
+        System.out.println("Ruta encontrada por BBFS");
+        resultado.getPath().forEach(node->System.err.println(node.getValue()+""));
+        
     }
 
     private static void runGraph() {
